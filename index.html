@@ -35,14 +35,28 @@
 
         <main>
             <section id="res-container">
-                <div class="film-container"
-                    v-for="film in filmsToShow">
-                    <h2 class="title">{{ film.title }}</h2>
-                    <h3 class="title original">{{ film.original_title }}</h3>
-                    <figure>
-                        <img :src= '`img/${film.original_language}.png`' :alt="film.original_language">
-                    </figure>
-                    <p>{{ film.vote_average }}</p>
+                <div class="display-container films">
+                    <h2 v-if="filmsToDisplay.length > 0">Films</h2>
+                    <div v-for="film in filmsToDisplay">
+                        <h3 class="title">{{ film.title }}</h3>
+                        <h4 class="title original">{{ film.original_title }}</h4>
+                        <figure>
+                            <img :src='`img/${film.original_language}.png`' :alt="film.original_language">
+                        </figure>
+                        <p>{{ film.vote_average }}</p>
+                    </div>
+                </div>
+
+                <div class="display-container tv-shows">
+                    <h2 v-if="showsToDisplay.length > 0">Tv Shows</h2>
+                    <div v-for="show in showsToDisplay">
+                        <h3 class="title">{{ show.name }}</h3>
+                        <h4 class="title original">{{ show.original_name }}</h4>
+                        <figure>
+                            <img :src='`img/${show.original_language}.png`' :alt="show.original_language">
+                        </figure>
+                        <p>{{ show.vote_average }}</p>
+                    </div>
                 </div>
             </section>
         </main>

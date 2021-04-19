@@ -3,19 +3,34 @@
     padding: 0;
     box-sizing: border-box;
 }
-#app{
-
-    padding: 0 15px;
-}
 /* TOP-NAV */
 #top-nav{
     display: flex;
     height: 80px;
     align-items: center;
+    padding-left: 20px;
 }
-.film-container figure{
+
+/* MAIN */
+.display-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.display-container > h2{
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+.display-container > div{
+   width: 20%;
+   margin: 10px;
+   padding: 10px;
+   border: 1px solid black;
+} 
+.display-container figure{
     width: 30px;
 }
-.film-container figure img{
+.display-container figure img{
     width: 100%;
 }

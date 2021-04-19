@@ -26,15 +26,15 @@ function initVue() {
                         'query': this.searchBarTxt
                     }
                 })
-                    .then((data) => {
+                .then((data) => {
 
-                        const matchingFilms = data.data.results;
-                        this.filmsToDisplay = matchingFilms
-                    })
-                    .catch(() => {
+                    const matchingFilms = data.data.results;
+                    this.filmsToDisplay = matchingFilms;
+                })
+                .catch(() => {
 
-                        console.log('error');
-                    });
+                    console.log('error');
+                });
             },
             searchTvShows: function() {
 
@@ -45,15 +45,15 @@ function initVue() {
                         'query': this.searchBarTxt
                     }
                 })
-                    .then((data) => {
+                .then((data) => {
 
-                        const matchingShows = data.data.results;
-                        this.showsToDisplay = matchingShows
-                    })
-                    .catch(() => {
+                    const matchingShows = data.data.results;
+                    this.showsToDisplay = matchingShows
+                })
+                .catch(() => {
 
-                        console.log('error');
-                    });
+                    console.log('error');
+                });
             },
         },
     });

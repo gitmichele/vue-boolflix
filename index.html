@@ -39,13 +39,13 @@
                     <h2 v-if="filmsToDisplay.length > 0">Films</h2>
                     <div v-for="film in filmsToDisplay">
                         <figure>
-                            <img :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
+                            <img v-if="film.poster_path != null"  :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
+                            <img v-else src="img/not_found.jpeg" alt="" class="not_found">
                         </figure>
                         <h3 class="title">{{ film.title }}</h3>
                         <h4 class="title original">{{ film.original_title }}</h4>
                         <div class="language">
-                            <img v-if="film.poster_path != null" :src='`img/${film.original_language}.png`' :alt="film.original_language">
-                            <img v-else src="img/not_found.jpeg" alt="" class="not_found">
+                            <img :src='`img/${film.original_language}.png`' :alt="film.original_language">
                         </div class="language">
                         <p>{{ film.vote_average }}</p>
                     </div>

@@ -13,3 +13,9 @@
     height: 80px;
     align-items: center;
 }
+.film-container figure{
+    width: 30px;
+}
+.film-container figure img{
+    width: 100%;
+}

@@ -39,7 +39,9 @@
                     v-for="film in filmsToShow">
                     <h2 class="title">{{ film.title }}</h2>
                     <h3 class="title original">{{ film.original_title }}</h3>
-                    <p>{{ film.original_language }}</p>
+                    <figure>
+                        <img :src= '`img/${film.original_language}.png`' :alt="film.original_language">
+                    </figure>
                     <p>{{ film.vote_average }}</p>
                 </div>
             </section>

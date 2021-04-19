@@ -7,7 +7,7 @@ function initVue() {
 
             apiKey: 'f64a77b6bcffaceefba175225998a0d4',
             searchBarTxt: '',
-            filmsToShow: []
+            filmsToShow: [],
         },
         methods: {
 
@@ -24,7 +24,6 @@ function initVue() {
 
                     const matchingFilms = data.data.results;
                     this.filmsToShow = matchingFilms
-                    console.log(this.filmsToShow);
                 })
                 .catch(() => {
 

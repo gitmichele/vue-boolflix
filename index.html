@@ -38,11 +38,15 @@
                 <div class="display-container films">
                     <h2 v-if="filmsToDisplay.length > 0">Films</h2>
                     <div v-for="film in filmsToDisplay">
+                        <figure>
+                            <img :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
+                        </figure>
                         <h3 class="title">{{ film.title }}</h3>
                         <h4 class="title original">{{ film.original_title }}</h4>
-                        <figure>
-                            <img :src='`img/${film.original_language}.png`' :alt="film.original_language">
-                        </figure>
+                        <div class="language">
+                            <img v-if="film.poster_path != null" :src='`img/${film.original_language}.png`' :alt="film.original_language">
+                            <img v-else src="img/not_found.jpeg" alt="" class="not_found">
+                        </div class="language">
                         <p>{{ film.vote_average }}</p>
                     </div>
                 </div>
@@ -50,11 +54,15 @@
                 <div class="display-container tv-shows">
                     <h2 v-if="showsToDisplay.length > 0">Tv Shows</h2>
                     <div v-for="show in showsToDisplay">
+                        <figure>
+                            <img v-if="show.poster_path != null" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
+                            <img v-else src="img/not_found.jpeg" alt="" class="not_found">
+                        </figure>
                         <h3 class="title">{{ show.name }}</h3>
                         <h4 class="title original">{{ show.original_name }}</h4>
-                        <figure>
+                        <div class="language">
                             <img :src='`img/${show.original_language}.png`' :alt="show.original_language">
-                        </figure>
+                        </div>
                         <p>{{ show.vote_average }}</p>
                     </div>
                 </div>

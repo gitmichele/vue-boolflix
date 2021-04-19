@@ -23,14 +23,16 @@
     text-transform: uppercase;
 }
 .display-container > div{
-   width: 20%;
    margin: 10px;
    padding: 10px;
    border: 1px solid black;
 } 
-.display-container figure{
+.display-container .language{
     width: 30px;
 }
-.display-container figure img{
+.display-container .language > img{
     width: 100%;
+}
+.not_found{
+    width: 342px;
 }

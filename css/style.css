@@ -36,3 +36,6 @@
 .not_found{
     width: 342px;
 }
+.vote{
+    display: flex;
+}

@@ -9,6 +9,7 @@ function initVue() {
             searchBarTxt: '',
             filmsToDisplay: [],
             showsToDisplay: [],
+            maxVote: 5,
         },
         methods: {
 
@@ -29,7 +30,8 @@ function initVue() {
                 .then((data) => {
 
                     const matchingFilms = data.data.results;
-                    this.filmsToDisplay = matchingFilms;
+                    this.adjustVote(matchingFilms)
+                    this.filmsToDisplay = matchingFilms
                 })
                 .catch(() => {
 
@@ -48,12 +50,20 @@ function initVue() {
                 .then((data) => {
 
                     const matchingShows = data.data.results;
+                    this.adjustVote(matchingShows)
                     this.showsToDisplay = matchingShows
                 })
                 .catch(() => {
 
                     console.log('error');
                 });
+            },
+            adjustVote: function(arr) {
+
+                const adjArr = arr.forEach((item) => {
+
+                    return item.vote_average = Math.round(item.vote_average / 2)
+                })
             },
         },
     });

@@ -47,7 +47,10 @@
                         <div class="language">
                             <img :src='`img/${film.original_language}.png`' :alt="film.original_language">
                         </div class="language">
-                        <p>{{ film.vote_average }}</p>
+                        <div class="vote">
+                            <i v-for="num in film.vote_average" class="fas fa-star"></i>
+                            <i  v-for="num in (maxVote - film.vote_average)" class="far fa-star"></i>
+                        </div>
                     </div>
                 </div>
 
@@ -63,7 +66,14 @@
                         <div class="language">
                             <img :src='`img/${show.original_language}.png`' :alt="show.original_language">
                         </div>
-                        <p>{{ show.vote_average }}</p>
+                        <div class="vote">
+                            <span v-for="num in show.vote_average">
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span v-for="num in (maxVote - show.vote_average)">
+                                <i class="far fa-star"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </section>

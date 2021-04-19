@@ -21,6 +21,29 @@
 
 <body>
     <div id="app">
+        <section id="top-nav">
+            <div class="search-bar">
+                <input type="text" 
+                    v-model="searchBarTxt" 
+                    v-on:keyup.enter="searchTxt">
+            </div>
+            <button 
+                @click="searchTxt">
+                Search
+            </button>
+        </section>
+
+        <main>
+            <section id="res-container">
+                <div class="film-container"
+                    v-for="film in filmsToShow">
+                    <h2 class="title">{{ film.title }}</h2>
+                    <h3 class="title original">{{ film.original_title }}</h3>
+                    <p>{{ film.original_language }}</p>
+                    <p>{{ film.vote_average }}</p>
+                </div>
+            </section>
+        </main>
     </div>
 </body>
 </html>

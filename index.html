@@ -45,7 +45,7 @@
 
                 <nav>
                     <h2 :class="!cardSwap ? 'selected' : ''"
-                    @click="displayMovies">
+                        @click="displayMovies">
                         Movies
                     </h2>
                     <h2 :class="cardSwap ? 'selected' : ''"
@@ -54,44 +54,79 @@
                     </h2>
                 </nav>
 
-                <div v-if="!cardSwap" class="display-container films">
-                    <div v-for="film in filmsToDisplay">
+                <div v-if="!cardSwap" class="display-container">
+
+                    <div class="single-container" 
+                        v-for="film in filmsToDisplay">
+
                         <figure>
-                            <img v-if="film.poster_path != null"  :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
-                            <img v-else src="img/not_found.jpeg" alt="" class="not_found">
+                            <img v-if="film.poster_path != null"  
+                                :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" 
+                                alt="">
+                            <img v-else 
+                                class="not_found"
+                                src="img/not_found.jpeg" 
+                                alt="">
                         </figure>
-                        <h3 class="title">{{ film.title }}</h3>
-                        <h4 class="title original">{{ film.original_title }}</h4>
-                        <div class="language">
-                            <img :src='`img/${film.original_language}.png`' :alt="film.original_language">
-                        </div class="language">
-                        <div class="vote">
-                            <i v-for="num in film.vote_average" class="fas fa-star"></i>
-                            <i  v-for="num in (maxVote - film.vote_average)" class="far fa-star"></i>
+
+                        <div class="text">
+                            <h3 class="title">
+                                {{ film.title }}
+                            </h3>
+                            <h4 class="title original">
+                                {{ film.original_title }}
+                            </h4>
+                            <div class="language">
+                                <img :src='`img/${film.original_language}.png`' :alt="film.original_language">
+                            </div class="language">
+                            <div class="vote star-color">
+                                <i v-for="num in film.vote_average" 
+                                    class="fas fa-star"></i>
+                                <i v-for="num in (maxVote - film.vote_average)"        class="far fa-star"></i>
+                            </div>
+                            <p>{{ film.overview }}</p>
                         </div>
+
                     </div>
                 </div>
 
-                <div v-else class="display-container tv-shows">
-                    <div v-for="show in showsToDisplay">
+                <div v-else class="display-container">
+
+                    <div class="single-container" 
+                        v-for="show in showsToDisplay">
+
                         <figure>
-                            <img v-if="show.poster_path != null" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">
-                            <img v-else src="img/not_found.jpeg" alt="" class="not_found">
+                            <img v-if="show.poster_path != null" 
+                                :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" 
+                                alt="">
+                            <img v-else 
+                                class="not_found"
+                                src="img/not_found.jpeg" 
+                                alt="">
                         </figure>
-                        <h3 class="title">{{ show.name }}</h3>
-                        <h4 class="title original">{{ show.original_name }}</h4>
-                        <div class="language">
-                            <img :src='`img/${show.original_language}.png`' :alt="show.original_language">
-                        </div>
-                        <div class="vote">
-                            <span v-for="num in show.vote_average">
-                                <i class="fas fa-star"></i>
-                            </span>
-                            <span v-for="num in (maxVote - show.vote_average)">
-                                <i class="far fa-star"></i>
-                            </span>
+
+                        <div class="text">
+                            <h3 class="title">
+                                {{ show.name }}
+                            </h3>
+                            <h4 class="title original">
+                                {{ show.original_name }}
+                            </h4>
+                            <div class="language">
+                                <img :src='`img/${show.original_language}.png`' :alt="show.original_language">
+                            </div>
+                            <div class="vote star-color">
+                                <span v-for="num in show.vote_average">
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <span v-for="num in (maxVote - show.vote_average)">
+                                    <i class="far fa-star"></i>
+                                </span>
+                            </div>
+                            <p>{{ show.overview }}</p>
                         </div>
                     </div>
+
                 </div>
             </section>
         </main>

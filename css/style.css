@@ -13,11 +13,11 @@
 #home{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     height: 100%;
     width: 100%;
-    padding-left: 20px;
+    padding-top: 200px;
 }
 #home .logo{
     width: 500px;
@@ -61,21 +61,47 @@ nav h2{
     border-bottom: 1px solid #fff;
 }
 
+/* DISPLAY */
 .display-container{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+.single-container{
+    position: relative;
+    margin: 40px 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.single-container .text{
+    position: absolute;
+    display: none;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    padding: 10px;
+}
+.single-container:hover figure{
+    opacity: .1;
+}
+.single-container:hover .text{
+    display: flex;
+}
+.display-container .text>*{
+    margin: 10px;
+    text-align: center;
 }
 .display-container > h2{
     width: 100%;
     text-align: center;
     text-transform: uppercase;
 }
-.display-container > div{
-   margin: 10px;
-   padding: 10px;
-   border: 1px solid black;
-} 
 .display-container .language{
     width: 30px;
 }
@@ -87,4 +113,11 @@ nav h2{
 }
 .vote{
     display: flex;
+}
+.star-color{
+    color: gold
+}
+.single-container p{
+    overflow: auto;
+
 }

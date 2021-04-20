@@ -21,9 +21,13 @@
 
 <body>
     <div id="app">
-        <section id="top-nav">
+        <section v-if="filmsToDisplay.length == 0 || showsToDisplay.length == 0" id="home">
+            <div class="logo">
+                <a href="#"><img src="img/logo.png" alt=""></a>
+            </div>
             <div class="search-bar">
-                <input type="text" 
+                <input type="text"
+                    placeholder="Search" 
                     v-model="searchBarTxt" 
                     v-on:keyup.enter="searchTxt">
             </div>
@@ -33,10 +37,24 @@
             </button>
         </section>
 
-        <main>
+        <main v-else>
             <section id="res-container">
-                <div class="display-container films">
-                    <h2 v-if="filmsToDisplay.length > 0">Films</h2>
+                <header>
+                    <a href="#" @click="goHome"><img src="img/logo.png" alt=""></a>
+                </header>
+
+                <nav>
+                    <h2 :class="!cardSwap ? 'selected' : ''"
+                    @click="displayMovies">
+                        Movies
+                    </h2>
+                    <h2 :class="cardSwap ? 'selected' : ''"
+                        @click="displayShows">
+                        Tv Shows
+                    </h2>
+                </nav>
+
+                <div v-if="!cardSwap" class="display-container films">
                     <div v-for="film in filmsToDisplay">
                         <figure>
                             <img v-if="film.poster_path != null"  :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
@@ -54,8 +72,7 @@
                     </div>
                 </div>
 
-                <div class="display-container tv-shows">
-                    <h2 v-if="showsToDisplay.length > 0">Tv Shows</h2>
+                <div v-else class="display-container tv-shows">
                     <div v-for="show in showsToDisplay">
                         <figure>
                             <img v-if="show.poster_path != null" :src="`https://image.tmdb.org/t/p/w342/${show.poster_path}`" alt="">

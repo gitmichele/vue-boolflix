@@ -10,6 +10,7 @@ function initVue() {
             filmsToDisplay: [],
             showsToDisplay: [],
             maxVote: 5,
+            cardSwap: false,
         },
         methods: {
 
@@ -20,11 +21,13 @@ function initVue() {
             },
             searchFilms: function() {
 
+                const toSearch = this.searchBarTxt
+
                 axios.get('https://api.themoviedb.org/3/search/movie', {
 
                     params: {
                         'api_key': this.apiKey,
-                        'query': this.searchBarTxt
+                        'query': toSearch
                     }
                 })
                 .then((data) => {
@@ -32,6 +35,7 @@ function initVue() {
                     const matchingFilms = data.data.results;
                     this.adjustVote(matchingFilms)
                     this.filmsToDisplay = matchingFilms
+                    this.searchBarTxt = ''
                 })
                 .catch(() => {
 
@@ -40,11 +44,13 @@ function initVue() {
             },
             searchTvShows: function() {
 
+                const toSearch = this.searchBarTxt
+
                 axios.get('https://api.themoviedb.org/3/search/tv', {
 
                     params: {
                         'api_key': this.apiKey,
-                        'query': this.searchBarTxt
+                        'query': toSearch
                     }
                 })
                 .then((data) => {
@@ -52,6 +58,7 @@ function initVue() {
                     const matchingShows = data.data.results;
                     this.adjustVote(matchingShows)
                     this.showsToDisplay = matchingShows
+                    this.searchBarTxt = ''
                 })
                 .catch(() => {
 
@@ -64,6 +71,19 @@ function initVue() {
 
                     return item.vote_average = Math.round(item.vote_average / 2)
                 })
+            },
+            displayShows: function() {
+
+                this.cardSwap = true;
+            },
+            displayMovies: function() {
+
+                this.cardSwap = false;
+            },
+            goHome: function() {
+
+                this.filmsToDisplay = [];
+                this.showsToDisplay = [];
             },
         },
     });

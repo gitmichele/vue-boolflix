@@ -21,13 +21,11 @@ function initVue() {
             },
             searchFilms: function() {
 
-                const toSearch = this.searchBarTxt
-
                 axios.get('https://api.themoviedb.org/3/search/movie', {
 
                     params: {
                         'api_key': this.apiKey,
-                        'query': toSearch
+                        'query': this.searchBarTxt
                     }
                 })
                 .then((data) => {
@@ -35,7 +33,6 @@ function initVue() {
                     const matchingFilms = data.data.results;
                     this.adjustVote(matchingFilms)
                     this.filmsToDisplay = matchingFilms
-                    this.searchBarTxt = ''
                 })
                 .catch(() => {
 
@@ -44,13 +41,11 @@ function initVue() {
             },
             searchTvShows: function() {
 
-                const toSearch = this.searchBarTxt
-
                 axios.get('https://api.themoviedb.org/3/search/tv', {
 
                     params: {
                         'api_key': this.apiKey,
-                        'query': toSearch
+                        'query': this.searchBarTxt
                     }
                 })
                 .then((data) => {
@@ -58,7 +53,6 @@ function initVue() {
                     const matchingShows = data.data.results;
                     this.adjustVote(matchingShows)
                     this.showsToDisplay = matchingShows
-                    this.searchBarTxt = ''
                 })
                 .catch(() => {
 
@@ -84,6 +78,7 @@ function initVue() {
 
                 this.filmsToDisplay = [];
                 this.showsToDisplay = [];
+                this.searchBarTxt = ''
             },
         },
     });

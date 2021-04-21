@@ -21,7 +21,7 @@
 
 <body>
     <div id="app">
-        <section v-if="filmsToDisplay.length == 0 || showsToDisplay.length == 0" id="home">
+        <section v-if="filmsToDisplay.length == 0 && showsToDisplay.length == 0" id="home">
             <div class="logo">
                 <a href="#"><img src="img/logo.png" alt=""></a>
             </div>
@@ -86,7 +86,10 @@
                             </div>
                             <p>{{ film.overview }}</p>
                         </div>
+                    </div>
 
+                    <div class="no-match" v-if="filmsToDisplay.length == 0">
+                        No movie match for {{ searchBarTxt }}
                     </div>
                 </div>
 
@@ -125,6 +128,10 @@
                             </div>
                             <p>{{ show.overview }}</p>
                         </div>
+                    </div>
+
+                    <div class="no-match" v-if="showsToDisplay.length == 0">
+                        No TV Show match for {{ searchBarTxt }}
                     </div>
 
                 </div>
